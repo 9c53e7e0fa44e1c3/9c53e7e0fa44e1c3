@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@netlify/functions": "^2.8.1",
     "firebase-admin": "^12.5.0"
   }
 }

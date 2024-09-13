@@ -24,23 +24,24 @@
   </form>
 
   <script>
-    document.getElementById("contactForm").addEventListener("submit", function(event) {
-      event.preventDefault();
-      const formData = {
-        name: document.getElementById("name").value,
-        email: document.getElementById("email").value,
-        message: document.getElementById("message").value
-      };
+document.getElementById("contactForm").addEventListener("submit", function(event) {
+  event.preventDefault();
 
-      fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData)
-      })
-      .then(response => response.json())
-      .then(data => alert('Message sent successfully!'))
-      .catch(error => console.error('Error:', error));
-    });
+  const formData = {
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+    message: document.getElementById("message").value,
+  };
+
+  fetch('/api/contact', {
+    method: 'POST',  // 确保这里是 POST 方法
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(formData),
+  })
+  .then(response => response.json())
+  .then(data => alert('Message sent successfully!'))
+  .catch(error => console.error('Error:', error));
+});
   </script>
 </body>
 </html>

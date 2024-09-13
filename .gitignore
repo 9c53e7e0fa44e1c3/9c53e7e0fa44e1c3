@@ -17,3 +17,5 @@ build/
 # 忽略临时文件
 *.tmp
 *.swp
+# Local Netlify folder
+.netlify
