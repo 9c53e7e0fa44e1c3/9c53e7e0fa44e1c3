@@ -1,17 +1,34 @@
-const admin = require('firebase-admin');
-admin.initializeApp();
+// const admin = require('firebase-admin');
+// admin.initializeApp();
 
-const db = admin.firestore();
+// const db = admin.firestore();
 
-exports.handler = async function(event, context) {
-  const data = JSON.parse(event.body);
-  await db.collection('contacts').add(data);
+// exports.handler = async function(event, context) {
+//   const data = JSON.parse(event.body);
+//   await db.collection('contacts').add(data);
 
-  return {
-    statusCode: 200,
-    body: JSON.stringify({ message: "Form submission received and saved!" })
-  };
-};
+//   return {
+//     statusCode: 200,
+//     body: JSON.stringify({ message: "Form submission received and saved!" })
+//   };
+// };
+
+const handler = async (event) => {
+  try {
+    const subject = event.queryStringParameters.name || 'World'
+    return {
+      statusCode: 200,
+      body: JSON.stringify({ message: `Hello ${subject}` }),
+      // // more keys you can return:
+      // headers: { "headerName": "headerValue", ... },
+      // isBase64Encoded: true,
+    }
+  } catch (error) {
+    return { statusCode: 500, body: error.toString() }
+  }
+}
+
+module.exports = { handler }
 
 // exports.handler = async function (event, context) {
 //   // 检查请求方法，确保是POST请求
