@@ -1,16 +1,17 @@
-// netlify/functions/contact.js
+const admin = require('firebase-admin');
+admin.initializeApp();
+
+const db = admin.firestore();
 
 exports.handler = async function(event, context) {
-    const data = JSON.parse(event.body);
+  const data = JSON.parse(event.body);
+  await db.collection('contacts').add(data);
 
-    // 模拟存储表单数据，或通过API将数据存储到数据库
-    console.log("Form Data:", data);
-
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ message: "Form submission received!" })
-    };
+  return {
+    statusCode: 200,
+    body: JSON.stringify({ message: "Form submission received and saved!" })
   };
+};
 
 // exports.handler = async function (event, context) {
 //   // 检查请求方法，确保是POST请求
